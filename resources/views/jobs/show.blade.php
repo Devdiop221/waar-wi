@@ -8,4 +8,14 @@
         <span class="text-sm text-gray-600">{{ number_format($job->price /1, 2 , '.', '' ) }} FCFA</span>
     </div>
 
+    <section x-data="{ open: false }">
+        <a href="#" class="text-green-500" @click=" open = !open">Cliquez ici pour soumettre une candidature</a>
+    </section>
+
+    <form x-show="open" x-claok method="POST" action="{{ route('proposals.store', $job) }}" >
+        @csrf
+        <textarea class="p-3 font-thin w-full max-w-md name="content"></textarea>
+        <button type="submit" class="block bg-green-700 text-white px-3 py-2 mt-3">Soumettre ma lettre de motivation</button>
+    </form>
+
 @endsection

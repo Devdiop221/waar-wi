@@ -20,6 +20,11 @@ class Job extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public function proposals()
+    {
+        return $this->hasMany('App\Models\Proposal');
+    }
+
     public function likes()
     {
         return $this->belongsToMany('App\Models\User');
