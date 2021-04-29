@@ -23,9 +23,15 @@ Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
 Route::get('/jobs/{id}', [JobController::class, 'show'])->name('jobs.show');
 
 Route::group(['middleware'=> ['auth']], function () {
+    Route::get('/confirmProposal/{proposal}', [ProposalController::class, 'confirm'])->name('confirm.proposal');
+    Route::get('/home', function () {return view('home');})->name('home');
+});
+
+Route::group(['middleware' => ['auth','proposal']], function () {
 
     Route::post('/submit/{job}', [ProposalController::class, 'store'])->name('proposals.store');
-    Route::get('/home', function() {return view('home');})->name('home');
+
 });
+
 
 
